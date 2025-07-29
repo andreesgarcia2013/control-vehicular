@@ -18,3 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/helloworld', function () {
+    try {
+        // Ejecuta una consulta de prueba
+        DB::connection();
+         return response()->json([
+            'message' => 'Hello World!',
+            'db_connection' => 'OK'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Hello World!',
+            'db_connection' => 'FAILED',
+            'error' => $e->getMessage()
+        ]);
+    }
+});
